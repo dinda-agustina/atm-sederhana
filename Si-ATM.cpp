@@ -60,3 +60,50 @@ void setorTunai(int &saldo, string riwayat[], int &index) {
 
     cout << "Setor Tunai Berhasil!\n\n";
 }
+
+// =========================
+// Fungsi Transfer Gina
+// =========================
+void transferUang(int &saldo, int daftarRekening[], int jumlahRek, 
+                  string riwayat[], int &index) 
+{
+    int rekTujuan;
+    int jumlah;
+
+    cout << "Masukkan nomor rekening tujuan: ";
+    cin >> rekTujuan;
+
+    bool ditemukan = false;
+    for (int i = 0; i < jumlahRek; i++) {
+        if (rekTujuan == daftarRekening[i]) {
+            ditemukan = true;
+            break;
+        }
+    }
+
+    if (!ditemukan) {
+        cout << "Rekening tidak ditemukan!\n";
+        return;
+    }
+
+    cout << "Masukkan jumlah transfer: ";
+    cin >> jumlah;
+
+    if (jumlah <= 0) {
+        cout << "Jumlah tidak valid!\n";
+        return;
+    }
+
+    if (jumlah > saldo) {
+        cout << "Saldo tidak cukup!\n";
+        return;
+    }
+
+    saldo -= jumlah;
+
+    // Simpan ke riwayat transaksi
+    riwayat[index++] = "Transfer " + to_string(jumlah) + " ke " + to_string(rekTujuan);
+
+    cout << "Transfer berhasil! Anda mentransfer Rp" 
+         << jumlah << " ke rekening " << rekTujuan << endl << endl;
+}
