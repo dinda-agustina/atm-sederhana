@@ -24,10 +24,6 @@ bool loginPIN(int pinBenar) {
     return false;
 }
 
-int main(){
-    int pinATM = 2025;
-}
-
 // Ghina
 // Update: Penambahan dokumentasi dan perbaikan format
 
@@ -64,8 +60,7 @@ void setorTunai(int &saldo, string riwayat[], int &index) {
 // =========================
 // Fungsi Transfer Gina
 // =========================
-void transferUang(int &saldo, int daftarRekening[], int jumlahRek, 
-                  string riwayat[], int &index) 
+void transferUang(int &saldo, int daftarRekening[], int jumlahRek, string riwayat[], int &index) 
 {
     int rekTujuan;
     int jumlah;
@@ -104,6 +99,61 @@ void transferUang(int &saldo, int daftarRekening[], int jumlahRek,
     // Simpan ke riwayat transaksi
     riwayat[index++] = "Transfer " + to_string(jumlah) + " ke " + to_string(rekTujuan);
 
-    cout << "Transfer berhasil! Anda mentransfer Rp" 
-         << jumlah << " ke rekening " << rekTujuan << endl << endl;
+    cout << "Transfer berhasil! Anda mentransfer Rp" << jumlah << " ke rekening " << rekTujuan << endl << endl;
+}
+
+int main(){
+    int pinATM = 2025;
+
+    // Login
+    if (!loginPIN(pinATM))
+        return 0;
+
+    int pilihan;
+    
+    do {
+        cout << "===== MENU ATM Nusantara =====\n";
+        cout << "1. Cek Saldo\n";
+        cout << "2. Tarik Tunai\n";
+        cout << "3. Setor Tunai\n";
+        cout << "4. Transfer Antar Rekening\n";
+        cout << "5. Riwayat Transaksi\n";
+        cout << "6. Keluar\n";
+        cout << "Pilih menu: ";
+        cin >> pilihan;
+        cout << endl;
+
+        switch (pilihan) {
+            case 1:
+                // 
+                break;
+
+            case 2:
+                // 
+                break;
+
+            case 3:
+                // 
+                break;
+
+            case 4:
+                // 
+                break;
+
+            case 5:
+                // 
+                break;
+
+            case 6:
+                cout << "Terima Kasih Telah Menggunakan ATM Nusantara!\n";
+                break;
+
+            default:
+                cout << "Menu Tidak Tersedia!\n\n";
+        }
+
+    } while (pilihan != 6);
+
+    return 0;
+
 }
