@@ -6,6 +6,7 @@ bool loginPIN(int pinBenar) {
     int pinInput;
     int kesempatan = 3;
 
+    cout << "======== SELAMAT DATANG DI ATM NUSANTARA ========\n" << endl;
     while (kesempatan > 0) {
         cout << "Masukkan PIN: ";
         cin >> pinInput;
@@ -25,6 +26,5 @@ bool loginPIN(int pinBenar) {
 
 int main(){
     int pinATM = 2025;
-    return 0;
 }
 
