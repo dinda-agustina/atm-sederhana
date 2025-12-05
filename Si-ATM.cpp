@@ -144,6 +144,8 @@ int main(){
     int pinATM = 2025;
     int saldo[5] = {500000, 300000, 700000, 250000, 900000};
     int rekeningUser = 0;
+    int daftarRekening[5] = {12345, 23456, 34567, 45678, 56789};
+    int jumlahRek = 5;
 
     string riwayat[100];
     int indexRiwayat = 0;
@@ -180,7 +182,7 @@ int main(){
                 break;
 
             case 4:
-                // 
+                transferUang(saldo[rekeningUser], daftarRekening, jumlahRek, riwayat, indexRiwayat);
                 break;
 
             case 5:
