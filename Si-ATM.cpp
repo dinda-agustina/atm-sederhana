@@ -57,6 +57,30 @@ void setorTunai(int &saldo, string riwayat[], int &index) {
     cout << "Setor Tunai Berhasil!\n\n";
 }
 
+// Fungsi Tarik Tunai
+void tarikTunai(int &saldo, string riwayat[], int &index) {
+    int jumlah;
+    cout << "Masukkan Jumlah Tarik: ";
+    cin >> jumlah;
+
+    if (jumlah <= 0) {
+        cout << "Jumlah Tidak Boleh 0 atau Negatif!\n\n";
+        return;
+    }
+    if (jumlah > saldo) {
+        cout << "Saldo Tidak Mencukupi!\n\n";
+        return;
+    }
+    if (jumlah < 20000) {
+        cout << "Minimal Tarik Rp 20.000!\n\n";
+        return;
+    }
+
+    saldo -= jumlah;
+    riwayat[index++] = "Tarik " + to_string(jumlah);
+    cout << "Tarik tunai Berhasil!\n\n";
+}
+
 // =========================
 // Fungsi Transfer Gina
 // =========================
@@ -102,8 +126,27 @@ void transferUang(int &saldo, int daftarRekening[], int jumlahRek, string riwaya
     cout << "Transfer berhasil! Anda mentransfer Rp" << jumlah << " ke rekening " << rekTujuan << endl << endl;
 }
 
+// Fungsi Riwayat Transaksi
+void tampilRiwayat(string riwayat[], int index) {
+    cout << "\n=== RIWAYAT TRANSAKSI ===\n";
+    if (index == 0) {
+        cout << "Belum Ada Transaksi.\n\n";
+        return;
+    }
+
+    for (int i = 0; i < index; i++) {
+        cout << i + 1 << ". " << riwayat[i] << endl;
+    }
+    cout << endl;
+}
+
 int main(){
     int pinATM = 2025;
+    int saldo[5] = {500000, 300000, 700000, 250000, 900000};
+    int rekeningUser = 0;
+
+    string riwayat[100];
+    int indexRiwayat = 0;
 
     // Login
     if (!loginPIN(pinATM))
@@ -125,15 +168,15 @@ int main(){
 
         switch (pilihan) {
             case 1:
-                // 
+                cekSaldo(saldo[rekeningUser]);
                 break;
 
             case 2:
-                // 
+                tarikTunai(saldo[rekeningUser], riwayat, indexRiwayat);
                 break;
 
             case 3:
-                // 
+                setorTunai(saldo[rekeningUser], riwayat, indexRiwayat);
                 break;
 
             case 4:
@@ -141,7 +184,7 @@ int main(){
                 break;
 
             case 5:
-                // 
+                tampilRiwayat(riwayat, indexRiwayat);
                 break;
 
             case 6:
