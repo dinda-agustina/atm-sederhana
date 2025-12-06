@@ -6,26 +6,25 @@ bool loginPIN(int pinBenar) {
     int pinInput;
     int kesempatan = 3;
 
-    cout << "======== SELAMAT DATANG DI ATM NUSANTARA ========\n" << endl;
+    cout << "======== SELAMAT DATANG DI ATM ========\n" << endl;
+    // loop kesempatan login
     while (kesempatan > 0) {
         cout << "Masukkan PIN: ";
         cin >> pinInput;
 
         if (pinInput == pinBenar) {
             cout << "Login Berhasil!\n" << endl;
-            return true;
+            return true; //jika berhasil masuk ke main
         } else {
-            kesempatan--;
+            kesempatan--; //jika gagal maka kesempatan akan berkurang (decrement)
             cout << "PIN Salah! Coba Lagi, Sisa Kesempatan: " << kesempatan << endl;
         }
     }
 
+    // kesempatan habis akun terblokir
     cout << "Akun Terblokir!" << endl;
     return false;
 }
-
-// Ghina
-// Update: Penambahan dokumentasi dan perbaikan format
 
 // Fungsi untuk menampilkan saldo pengguna
 void cekSaldo(int saldo) {
@@ -38,19 +37,19 @@ void setorTunai(int &saldo, string riwayat[], int &index) {
     cout << "Masukkan Jumlah Setor Tunai : ";
     cin >> jumlah;
 
-    // Validasi input nominal
+    // validasi input tak boleh 0 / negatif
     if (jumlah <= 0) {
         cout << "Jumlah Tidak Boleh 0 atau Negatif!\n" << endl;
         return;
     }
 
-    // Input harus kelipatan 10.000
+    // validasi input harus kelipatan Rp10.000
     if (jumlah % 10000 != 0) {
         cout << "Setoran Harus Kelipatan Rp 10.000!\n" << endl;
         return;
     }
 
-    // Proses menambahkan saldo dan menyimpan riwayat transaksi
+    // proses menambahkan saldo dan menyimpan riwayat transaksi
     saldo += jumlah;
     riwayat[index++] = "Setor " + to_string(jumlah);
 
@@ -81,9 +80,7 @@ void tarikTunai(int &saldo, string riwayat[], int &index) {
     cout << "Tarik tunai Berhasil!\n\n";
 }
 
-// =========================
-// Fungsi Transfer Gina
-// =========================
+// Fungsi Transfer
 void transferUang(int &saldo, int daftarRekening[], int jumlahRek, string riwayat[], int &index) 
 {
     int rekTujuan;
@@ -120,7 +117,7 @@ void transferUang(int &saldo, int daftarRekening[], int jumlahRek, string riwaya
 
     saldo -= jumlah;
 
-    // Simpan ke riwayat transaksi
+    // simpan ke riwayat transaksi
     riwayat[index++] = "Transfer " + to_string(jumlah) + " ke " + to_string(rekTujuan);
 
     cout << "Transfer berhasil! Anda mentransfer Rp" << jumlah << " ke rekening " << rekTujuan << endl << endl;
@@ -157,7 +154,7 @@ int main(){
     int pilihan;
     
     do {
-        cout << "===== MENU ATM Nusantara =====\n";
+        cout << "\n===== MENU ATM =====\n";
         cout << "1. Cek Saldo\n";
         cout << "2. Tarik Tunai\n";
         cout << "3. Setor Tunai\n";
@@ -190,7 +187,7 @@ int main(){
                 break;
 
             case 6:
-                cout << "Terima Kasih Telah Menggunakan ATM Nusantara!\n";
+                cout << "Terima Kasih Telah Menggunakan ATM!\n";
                 break;
 
             default:
